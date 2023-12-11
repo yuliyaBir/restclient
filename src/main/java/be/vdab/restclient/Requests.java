@@ -6,4 +6,6 @@ import org.springframework.web.service.annotation.GetExchange;
 interface Requests {
     @GetExchange("{id}")
     UserResponse findById(@PathVariable long id);
+    @GetExchange
+    UserResponse[] findAll();
 }

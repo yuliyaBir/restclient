@@ -3,6 +3,8 @@ package be.vdab.restclient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -21,5 +23,11 @@ class UserClient {
             return Optional.empty();
 
         }
+    }
+    List<User> findAll(){
+        return Arrays.stream(requests.findAll())
+                .map(userResponse ->
+                        new User(userResponse.id(), userResponse.name(), userResponse.address().city()))
+                .toList();
     }
 }
